@@ -117,4 +117,6 @@ class UsersController @Inject() (actionBuilder: ActionBuilders,val messagesApi: 
   }
 
 
+  def isUsed
+
 }
