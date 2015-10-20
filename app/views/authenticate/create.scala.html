@@ -1,0 +1,55 @@
+@(userForm: Form[UserForm])(implicit request: Request[Any], messages: Messages, flash: Flash)
+
+@import be.objectify.deadbolt.scala.views.html._
+@import be.objectify.deadbolt.core.utils.TemplateUtils._
+
+@import helper._
+
+@scripts = { }
+
+
+@main(scripts) {
+
+    <div class="span12">
+        <div class="well">
+
+           <h3>Sign Up</h3>
+
+           @form(action = routes.UsersController.save) {
+               <fieldset>
+
+                   @inputText(userForm("name"),
+                       'placeholder -> Messages("your.name"),
+                       '_label -> null,
+                       'class -> "form-control")
+
+                   @inputText(userForm("email"),
+                       'placeholder -> Messages("email"),
+                       '_label -> null,
+                       'class -> "form-control")
+
+                   @inputText(userForm("password"),
+                       'placeholder -> Messages("password"),
+                       '_label -> null,
+                       'class -> "form-control",
+                       'type -> "password")
+
+                </fieldset>
+
+                <div class="form-actions">
+                      <input type="submit" class="btn btn-primary" value="@Messages("signup.signup")">
+                </div>
+           }
+
+           <br>
+           <ul>
+            <li>Front-end (JS) validation must be added.</li>
+            <li>Back-end check for existing users.</li>
+            <li>Second password input box to verify password (probably).</li>
+            <li>Form to send email to verify user (probably).</li>
+            <li>Leave password and name fields short. There is no data to protect only distinguish users.</li>
+           </ul>
+
+        </div>
+    </div>
+}

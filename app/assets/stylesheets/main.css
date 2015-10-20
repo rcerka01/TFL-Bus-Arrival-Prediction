@@ -1,0 +1,45 @@
+dd.error {
+ color:red;
+ }
+
+
+dd.info {
+  color:white;
+}
+
+
+td.result-table {
+  width:15em;
+}
+
+
+#map {
+  width:250px;
+  height:150px;
+}
+
+
+.loader {
+ position:absolute;
+ display:none;
+}
+
+p.link {
+ cursor:pointer;
+}
+
+p.link:hover {
+ color:#fff;
+}
+
+
+/*======= Map Styling ============*/
+.gmnoprint a, .gmnoprint span {
+    display:none;
+}
+.gmnoprint div {
+    background:none !important;
+}
+#GMapsID div div a div img{
+    display:none;
+}

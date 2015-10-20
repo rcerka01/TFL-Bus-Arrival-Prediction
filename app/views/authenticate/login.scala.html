@@ -1,0 +1,53 @@
+@(loginForm: Form[LoginForm])(implicit request: Request[Any], messages: Messages, flash: Flash)
+
+@import helper._
+
+@main() {
+
+           <h3>Login</h3>
+
+
+
+            @flash.get("error").map { message =>
+               <div class="alert alert-danger">
+                   <strong>Error!</strong> @message
+               </div>
+            }
+
+            @flash.get("success").map { message =>
+                <div class="alert alert-success">
+                    <strong>Success!</strong> @message
+                </div>
+            }
+
+
+           @form(action = routes.UsersController.authenticate) {
+               <fieldset>
+
+                   @inputText(loginForm("email"),
+                        'placeholder -> Messages("email"),
+                        '_label -> null,
+                        'class -> "form-control")
+
+                   @inputText(loginForm("password"),
+                       'placeholder -> Messages("password"),
+                       '_label -> null,
+                       'class -> "form-control",
+                       'type -> "password")
+
+                </fieldset>
+
+                <div class="form-actions">
+                      <input type="submit" class="btn btn-primary" value="@Messages("signup.login")">
+                      <a href="@routes.UsersController.create">@Messages("signup.register")</a>
+                </div>
+           }
+
+           <br>
+           <ul>
+                 <li>Front-end (JS) validation must be added.</li>
+           </ul>
+
+        </div>
+    </div>
+}

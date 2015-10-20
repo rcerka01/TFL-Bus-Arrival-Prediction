@@ -1,0 +1,131 @@
+@(busstops: Seq[(String, String)], jobForm: Form[JobForm])(implicit request: Request[Any], messages: Messages)
+
+@import helper._
+@import be.objectify.deadbolt.scala.views.html._
+@import be.objectify.deadbolt.core.utils.TemplateUtils._
+
+@main() {
+
+
+<script src='@routes.Assets.versioned("javascripts/scripts.js")'></script>
+
+<span style="font-size:0.8em;">1. Select Bus Route &rarr; 2. Select Busstop</span>
+
+
+<img id="loader" class="loader" src='@routes.Assets.versioned("images/ajax-loader.gif")'>
+
+
+
+@subjectPresent(handler=new security.handlers.MyDeadboltHandler()) {
+ <div id="myroutes">
+  <h3>My Routes</h3>
+  <table id="savedjobstable" class="table"></table>
+ </div>
+}
+
+
+
+<div id="home">
+<h3>Route</h3>
+
+
+<div id="result" name="result" class="alert alert-info" style="display:none;">
+ <table>
+  <tr>
+    <td class="result-table">
+      <strong>Next:</strong><ul><li>No Data.</li></ul>
+    </td>
+    <td class="result-table">
+      <div id="map"> </div>
+    </td>
+  </tr>
+ </table>
+</div>
+
+
+ @inputText(jobForm("busnr"),
+  'placeholder -> Messages("212  or  n26  etc."),
+  '_label -> Messages("Bus Number:"),
+  'class -> "form-control")
+
+<div class="form-actions">
+    <button type="button" id="select" name="select" onclick="getStops();" class="btn btn-info">@Messages("Select")</button>
+</div>
+
+
+<br><br>
+
+
+<div id="part2" style="display:none;">
+  @select(field = jobForm("busstop"),
+   options = busstops,
+    'class -> "form-control",
+    'onchange -> "predict()",
+    '_label -> Messages("Select Bus Stop:"))
+
+ <div class="form-actions">
+    <button type="button" onclick="predict();" class="btn btn-info">@Messages("Update Prediction")</button>
+     @subjectPresentOr(handler=new security.handlers.MyDeadboltHandler()) {
+       <button type="button" onclick="saveRoute();" class="btn btn-primary">@Messages("Save Route")</button>}{
+       <button type="button" onclick="loginAlert();" class="btn btn-primary">@Messages("Save Route")</button>}
+ </div>
+ <br>
+</div>
+</div>
+
+
+
+
+<div id="about">
+<h3>About</h3>
+Find the real time Bus arrival with two clicks. Enter ths Bus route number and select desired bus stop.
+</div>
+
+
+
+
+
+<script>
+$( document ).ready(function() {
+
+
+  // run ajax loader for all ajax calls
+  $.ajaxSetup({
+    beforeSend: function() {
+     $('#loader').show();
+    },
+    complete: function(){
+     $('#loader').hide();
+    },
+    success: function() {}
+  });
+
+
+  @subjectPresent(handler=new security.handlers.MyDeadboltHandler()) {
+    // get saved jobs
+    getSavedJobs();
+  }
+
+
+   // for snmooth scrollig anchor tags
+   $('a[href^="#"]').on('click',function (e) {
+	    e.preventDefault();
+
+	    var target = this.hash;
+	    var $target = $(target);
+
+	    $('html, body').stop().animate({
+	        'scrollTop': $target.offset().top
+	    }, 900, 'swing', function () {
+	        window.location.hash = target;
+	    });
+	});
+
+
+});
+</script>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcMatGKGni_r0IwuoAEAewApkVUI5ZQfw&signed_in=false&callback=initMap"></script>
+
+}

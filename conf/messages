@@ -1,0 +1,14 @@
+your.name=Your Name
+password=Password
+email=Email
+logout=Logout
+
+signup.signup=Sign Up
+signup.register=Register
+signup.login=Login
+
+account.created=Account created, please Login to the service.
+
+error.internal=System fault, please try again.
+error.user=User with this email do not exist.
+error.password=The password do not mach with email provided.

@@ -1,0 +1,25 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index
+
+GET     /create                     controllers.UsersController.create()
+POST    /save                       controllers.UsersController.save
+POST    /authenticate               controllers.UsersController.authenticate
+GET     /login                      controllers.UsersController.login()
+GET     /logout                     controllers.UsersController.logout
+
+GET     /selectedroutes             controllers.JobsController.selectedRoutes()
+
+GET     /getStops                   controllers.JobsController.getStops(nr)
+GET     /predict                    controllers.JobsController.predict(nr,st)
+
+GET     /saveRoute                  controllers.JobsController.saveRoute(nr, stId, stName)
+
+GET     /getSavedJobs               controllers.JobsController.getSavedJobs
+GET     /deleteJob                  controllers.JobsController.deleteJob(id)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file)
