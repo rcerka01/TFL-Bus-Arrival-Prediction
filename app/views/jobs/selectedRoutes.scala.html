@@ -7,13 +7,10 @@
 @main() {
 
 
-<script src='@routes.Assets.versioned("javascripts/scripts.js")'></script>
-
 <span style="font-size:0.8em;">1. Select Bus Route &rarr; 2. Select Busstop</span>
 
 
 <img id="loader" class="loader" src='@routes.Assets.versioned("images/ajax-loader.gif")'>
-
 
 
 @subjectPresent(handler=new security.handlers.MyDeadboltHandler()) {
