@@ -50,7 +50,6 @@ class JobsController @Inject() (deadbolt: DeadboltActions, val messagesApi: Mess
   }
 
 
-
   /**
    * Gett Busstops
    */
