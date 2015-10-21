@@ -44,6 +44,14 @@ object UserServices {
   }
 
 
+  def emailAvailable(email: String) = {
+    findByEmail(email) map (result => result match {
+      case Some(UsersRow(_,_,_,_,_,_)) => false
+      case _                           => true
+    })
+  }
+
+
   def createUser(user: UsersRow):Unit = {
     try {
       UserDAO.insert(user)

@@ -8,6 +8,7 @@ signup.register=Register
 signup.login=Login
 
 account.created=Account created, please Login to the service.
+account.error=Server error, try to register again.
 
 error.internal=System fault, please try again.
 error.user=User with this email do not exist.

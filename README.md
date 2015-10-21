@@ -2,6 +2,8 @@
 Real Time TFL Bus Arrival Prediction
 
 Test project to get along with Scala web development on Play2.
+A special attention is to make up side down in non blocking way. Beginig with Slick3 all requests
+is made via Futures Promises in non blocking way
 Project uses Dedbolt for security, along with the Slick3 for Persistance over MySql database.
 The Authentacion and Authorisation process is hand made.
 

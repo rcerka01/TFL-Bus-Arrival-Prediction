@@ -11,7 +11,8 @@ import play.api.mvc._
 import services.UserServices
 
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.Future
+import scala.concurrent.duration._
+import scala.concurrent.{Await, Future}
 
 
 /**
@@ -30,9 +31,13 @@ class UsersController @Inject() (actionBuilder: ActionBuilders,val messagesApi: 
     mapping(
       "name" -> nonEmptyText,
       "password" -> nonEmptyText,
-      "email" -> email
+      "email" -> email.verifying("This email is already registered", text =>
+        // there is not other way than block ?
+        Await.result(UserServices.emailAvailable(text), 5000 millis)
+      )
     )(UserForm.apply)(UserForm.unapply)
   )
+
 
 
   val loginForm = Form(
@@ -53,6 +58,7 @@ class UsersController @Inject() (actionBuilder: ActionBuilders,val messagesApi: 
 
 
   def save = Action { implicit request =>
+
     userForm.bindFromRequest.fold(
       formWithErrors => Ok(views.html.authenticate.create(formWithErrors)),
       value => {
@@ -116,7 +122,5 @@ class UsersController @Inject() (actionBuilder: ActionBuilders,val messagesApi: 
     Redirect(routes.UsersController.login()).withNewSession
   }
 
-
-  def isUsed = ???
 
 }
