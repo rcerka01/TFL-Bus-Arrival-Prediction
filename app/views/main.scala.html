@@ -38,7 +38,9 @@
             <li class=""><a href="@routes.Application.index()">Home</a></li>
             @subjectPresentOr(handler=new security.handlers.MyDeadboltHandler()) {
                <li class=""><a href="#myroutes">My Routes</a></li>}{
-               <li class=""><p class="navbar-text link" onclick="javascript:loginAlert();">My Routes</p></li>}
+               <li class=""><p class="navbar-text link" onclick="javascript:loginAlert();">My Routes</p></li>
+            }
+            <li class=""><a href="http://www.mobiletfl.raitis.co.uk/" target="_blank">Mobile</a></li>
             <li class=""><a href="#about">About</a></li>
         </ul>
    </div>
@@ -80,10 +82,7 @@
  <div class="footer text-center">
     <div>
         <small>
-            The development of this application has purely academic matter. The main aim is to build a reactive web application by using Play framework and Scala as a programming language.<br>
-            Target application will be connecting via WebSockets to the TFL produced a data stream which will be handled by the WS connection library and reproduced via Iterattor and Enumerator classes (the cornerstone of Scala reactive programming paradigm).<br>
-            The overall aim is to test stability and actual performance of this architecture.<br>
-            <a href="http://raitis.co.uk">http://raitis.co.uk</a>
+            <a href="http://raitis.co.uk" target="_blank">&copy; http://raitis.co.uk</a>
         </small>
     </div>
  </div>

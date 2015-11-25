@@ -63,8 +63,10 @@
  <div class="form-actions">
     <button type="button" onclick="predict();" class="btn btn-info">@Messages("Update Prediction")</button>
      @subjectPresentOr(handler=new security.handlers.MyDeadboltHandler()) {
-       <button type="button" onclick="saveRoute();" class="btn btn-primary">@Messages("Save Route")</button>}{
-       <button type="button" onclick="loginAlert();" class="btn btn-primary">@Messages("Save Route")</button>}
+       <button type="button" onclick="saveRoute();" class="btn btn-primary">@Messages("Save Route")</button>
+     }{
+       <button type="button" onclick="loginAlert();" class="btn btn-primary">@Messages("Save Route")</button>
+     }
  </div>
  <br>
 </div>
@@ -75,7 +77,28 @@
 
 <div id="about">
 <h3>About</h3>
-Find the real time Bus arrival with two clicks. Enter ths Bus route number and select desired bus stop.
+
+    <p> This application is created to find the real time bus arrival times in London. Trough simple interface by letting enter the Bus route number
+        and select desired bus stop the application is returning bus arrival time predictions. </p>
+
+    <p> The development of this application has a purely academic matter.
+        The main aim was to build a reactive web application by using a Play framework with Scala.
+        As a source of data has been used Transport For London open data feed.
+        The base application has to connect the TFL produced open data stream which would be established
+        via Iterator and Enumerator classes, latter periodically requested via sockets. </p>
+
+    <p> Unfortunately TFL has refused access to the real time data stream, therefore the
+        server side application is updating data with WS library and preparing it with Jason. </p>
+
+    <p> The client side web application is using asynchronous requests with JQuery library and styled with Bootstrap.
+        It has a login feature to personalize searches. Security is established with a Deadbolt security plugin,
+        data persistence for MySql is using Slick3 and all data access interface (login, register, access control etc.) is hand written. </p>
+
+    <p> Client side mobile application is made by using Phonegap Cross Platform tool and styled with JQuery Mobile. </p>
+
+    <p> The overall aim is to endeavour project with Play2 by using Scala as a programming language which
+        would use a framework asynchronous builds and Scala functional advantages. </p>
+
 </div>
 
 

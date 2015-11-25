@@ -1,3 +1,12 @@
+// redirect to mobile
+ if (screen.width <= 800) {
+    window.location = "http://mobiletfl.raitis.co.uk";
+  }
+
+
+
+
+
 // get busstops
 function getStops() {
 

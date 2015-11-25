@@ -99,7 +99,7 @@ class JobsController @Inject() (deadbolt: DeadboltActions, val messagesApi: Mess
             case JsError(_) => None
           }
         }
-        Ok(outJsArray)
+        Ok(outJsArray).withHeaders("Access-Control-Allow-Origin"->"*")
       })
     }
   }
@@ -127,7 +127,7 @@ class JobsController @Inject() (deadbolt: DeadboltActions, val messagesApi: Mess
               )
           })
 
-          Ok(outJsArray)
+          Ok(outJsArray).withHeaders("Access-Control-Allow-Origin"->"*")
         })
       }
     }
